@@ -9,8 +9,16 @@
 import Foundation
 import UIKit
 
+public func show() {
+    XFPS.shared.enable = true
+}
 
-class XFPS: NSObject {
+public func hide() {
+    XFPS.shared.enable = false
+}
+
+
+public class XFPS: NSObject {
     static let instance = XFPS()
     class var shared: XFPS {
         return instance
@@ -32,6 +40,7 @@ class XFPS: NSObject {
         didSet {
             if !enable {
                 link.invalidate()
+                fpsLabel.removeFromSuperview()
             }
         }
     }
