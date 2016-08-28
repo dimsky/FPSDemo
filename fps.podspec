@@ -8,6 +8,5 @@ s.authors = { 'dimsky' => 'dimsky@163.com' }
 s.source = { :git => 'https://github.com/dimsky/FPSDemo.git', :tag => s.version.to_s }
 s.requires_arc = true
 s.ios.deployment_target = '7.0'
-s.source_files = 'FPSDemo/*.{h,m}'
-s.resources = 'FPSDemo/images/*.{png,xib}'
+s.source_files = 'FPS/*.{swift}'
 end
