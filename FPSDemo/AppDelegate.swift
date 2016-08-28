@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  FPSDemo
+//  FrameRateDemo
 //
-//  Created by dimsky on 16/8/29.
+//  Created by dimsky on 16/8/28.
 //  Copyright © 2016年 dimsky. All rights reserved.
 //
 
@@ -15,7 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        // 打开FPS 监控
+        FPS.shared.enable = true
         return true
     }
 
