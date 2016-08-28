@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-s.name = 'FPS'
+s.name ='XFPS'
 s.version = '1.0.0'
 s.license = { :type => 'MIT', :file => 'LICENSE'}
 s.summary = 'An FPS moniter view on iOS.'
