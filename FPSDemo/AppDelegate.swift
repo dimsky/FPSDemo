@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // 打开FPS 监控
-        FPS.shared.enable = true
+        XFPS.shared.enable = true
         return true
     }
 

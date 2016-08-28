@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 
-class FPS: NSObject {
-    static let instance = FPS()
-    class var shared: FPS {
+class XFPS: NSObject {
+    static let instance = XFPS()
+    class var shared: XFPS {
         return instance
     }
 
