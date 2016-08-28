@@ -9,18 +9,10 @@
 import Foundation
 import UIKit
 
-public func show() {
-    XFPS.shared.enable = true
-}
-
-public func hide() {
-    XFPS.shared.enable = false
-}
-
 
 public class XFPS: NSObject {
-    static let instance = XFPS()
-    class var shared: XFPS {
+    public static let instance = XFPS()
+    public class var shared: XFPS {
         return instance
     }
 
@@ -36,7 +28,7 @@ public class XFPS: NSObject {
     var frameNumber = 0
     var added = false
 
-    var enable: Bool = false {
+    public var enable: Bool = false {
         didSet {
             if !enable {
                 link.invalidate()
@@ -45,7 +37,7 @@ public class XFPS: NSObject {
         }
     }
 
-    override init() {
+    public override init() {
         super.init()
         for _ in 0..<Int(hardwareFPS) {
             lastSecondOfFrameTimes.append(0)
@@ -63,7 +55,7 @@ public class XFPS: NSObject {
     }
 
 
-    func start(link: CADisplayLink) {
+    public func start(link: CADisplayLink) {
         if enable {
             if let keyWindow = UIApplication.sharedApplication().keyWindow where added == false {
                 keyWindow.addSubview(fpsLabel)
@@ -94,7 +86,7 @@ public class XFPS: NSObject {
         fpsLabel.text = "\(currentFPS) FPS"
     }
 
-    func move(gesture: UIPanGestureRecognizer) {
+    public func move(gesture: UIPanGestureRecognizer) {
         if gesture.state == .Began {
             beganPoint = gesture.locationInView(fpsLabel)
         } else if gesture.state == .Changed {
