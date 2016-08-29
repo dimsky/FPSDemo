@@ -3,6 +3,8 @@
 ## Use
 
   Screenshots
+  
+  ![image](https://github.com/dimsky/FPSDemo/raw/master/screen.png)
 
   Cocoapods
   
