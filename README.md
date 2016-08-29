@@ -1,4 +1,16 @@
-# FPSDemo
-FPS test
+# FPS
 
-FPS 监控
+## Use
+
+  Screenshots
+
+  Cocoapods
+  
+    pod 'XFPS'
+    
+
+  Code
+  
+    XFPS.shared.enable = true
+    
+
