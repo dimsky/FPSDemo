@@ -13,25 +13,25 @@ class ComplexCell: UITableViewCell {
 
     var image1: UIImage? {
         didSet {
-            imageView1.image = image1?.aspectFillImage(size)
+            imageView1.image = image1?.aspectFillImage(size: size)
         }
     }
 
     var image2: UIImage? {
         didSet {
-            imageView2.image = image2?.aspectFillImage(size)
+            imageView2.image = image2?.aspectFillImage(size: size)
         }
     }
 
     var image3: UIImage? {
         didSet {
-            imageView3.image = image3?.aspectFillImage(size)
+            imageView3.image = image3?.aspectFillImage(size: size)
         }
     }
 
     var image4: UIImage? {
         didSet {
-            imageView4.image = image4?.aspectFillImage(size)
+            imageView4.image = image4?.aspectFillImage(size: size)
         }
     }
 
@@ -56,7 +56,7 @@ class ComplexCell: UITableViewCell {
         imageView4.layer.masksToBounds = true
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
@@ -77,9 +77,9 @@ extension UIImage {
         UIGraphicsBeginImageContext(targetSize)
         let origin = CGPoint(x: (targetSize.width  - self.size.width)  / 2,
                              y: (targetSize.height - self.size.height) / 2)
-        self.drawInRect(CGRect(origin: origin, size: self.size))
+        self.draw(in: CGRect(origin: origin, size: self.size))
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return scaledImage
+        return scaledImage!
     }
 }

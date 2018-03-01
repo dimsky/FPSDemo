@@ -20,9 +20,9 @@ public class XFPS: NSObject {
     var frameDuration = 1.0
     let fpsLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 20, width: 60, height: 20))
     var link: CADisplayLink!
-    var count: NSTimeInterval = 0
-    var lastTime: NSTimeInterval = 0
-    var lastSecondOfFrameTimes: [NSTimeInterval] = []
+    var count: TimeInterval = 0
+    var lastTime: TimeInterval = 0
+    var lastSecondOfFrameTimes: [TimeInterval] = []
 
     var beganPoint = CGPoint.zero
     var frameNumber = 0
@@ -43,21 +43,21 @@ public class XFPS: NSObject {
             lastSecondOfFrameTimes.append(0)
         }
         frameDuration = 1.0 / hardwareFPS
-        link = CADisplayLink(target: self, selector: #selector(start(_:)))
-        link.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
+        link = CADisplayLink(target: self, selector: #selector(start(link:)))
+        link.add(to: RunLoop.main, forMode: RunLoopMode.commonModes)
         fpsLabel.text = "60fps"
 
-        let gesture = UIPanGestureRecognizer(target: self, action: #selector(move(_:)))
+        let gesture = UIPanGestureRecognizer(target: self, action: #selector(move(gesture:)))
 
-        fpsLabel.userInteractionEnabled = true
+        fpsLabel.isUserInteractionEnabled = true
 
         fpsLabel.addGestureRecognizer(gesture)
     }
 
 
-    public func start(link: CADisplayLink) {
+    @objc public func start(link: CADisplayLink) {
         if enable {
-            if let keyWindow = UIApplication.sharedApplication().keyWindow where added == false {
+            if let keyWindow = UIApplication.shared.keyWindow, added == false {
                 keyWindow.addSubview(fpsLabel)
                 added = true
             }
@@ -77,26 +77,26 @@ public class XFPS: NSObject {
         let currentFPS = Int(hardwareFPS) - droppedFrameCount
 
         if droppedFrameCount <= 2 {
-            fpsLabel.backgroundColor = UIColor.greenColor()
+            fpsLabel.backgroundColor = UIColor.green
         } else if droppedFrameCount <= 5 {
-            fpsLabel.backgroundColor = UIColor.orangeColor()
+            fpsLabel.backgroundColor = UIColor.orange
         } else if droppedFrameCount <= 10 {
-            fpsLabel.backgroundColor = UIColor.redColor()
+            fpsLabel.backgroundColor = UIColor.red
         }
         fpsLabel.text = "\(currentFPS) FPS"
     }
 
-    public func move(gesture: UIPanGestureRecognizer) {
-        if gesture.state == .Began {
-            beganPoint = gesture.locationInView(fpsLabel)
-        } else if gesture.state == .Changed {
-            let newPoint = gesture.locationInView(fpsLabel)
+    @objc public func move(gesture: UIPanGestureRecognizer) {
+        if gesture.state == .began {
+            beganPoint = gesture.location(in: fpsLabel)
+        } else if gesture.state == .changed {
+            let newPoint = gesture.location(in: fpsLabel)
 
             let offSetX = newPoint.x - beganPoint.x
             let offSetY = newPoint.y - beganPoint.y
             fpsLabel.center = CGPoint(x: fpsLabel.center.x + offSetX, y: fpsLabel.center.y + offSetY)
 
-        } else if gesture.state == .Ended {
+        } else if gesture.state == .ended {
 
         }
     }
